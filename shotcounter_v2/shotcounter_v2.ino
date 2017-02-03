@@ -16,6 +16,8 @@
 
 #define SIG_IN  A1
 #define SIG_OUT A0
+#define RESET_BTN A2
+
 #define SIG_DEBOUNCE 1000
 #define SIG_HIGH 1000
 
@@ -83,6 +85,10 @@ void signalOutput(){
       }
       Serial.println("SIGNAL OUT: Resuming normal operation");
       SoftPWMSet(SIG_OUT,255);
+      while (digitalRead(RESET_BTN)==HIGH)
+      {
+        delay(10);     
+      }
 }
 
 
